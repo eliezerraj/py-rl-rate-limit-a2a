@@ -1,0 +1,16 @@
+dotenv
+pydantic
+opentelemetry-api
+opentelemetry-sdk
+opentelemetry-instrumentation-fastapi
+opentelemetry-instrumentation-requests
+opentelemetry-exporter-otlp
+opentelemetry-instrumentation-logging
+scikit-learn 
+numpy
+google-adk[a2a]
+fastapi
+uvicorn
+gunicorn
+numpy
+pandas
