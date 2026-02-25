@@ -20,7 +20,7 @@ def handler_train(payload: dict) -> dict:
         logger.debug("payload: %s", payload)
 
         try:
-            data_train = payload["data"]
+            data_train = payload
             result = reinforce_service.train_model(data=data_train)
             return result
 
@@ -36,7 +36,7 @@ def handler_action(payload: dict) -> dict:
         logger.debug("payload: %s", payload)
 
         try:
-            data_action = payload["data"]
+            data_action = payload
             result = reinforce_service.action(data=data_action)
             return result
 

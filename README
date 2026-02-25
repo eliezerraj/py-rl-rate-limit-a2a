@@ -40,4 +40,31 @@ py-rl-rate-limit-a2a
 
     curl --location 'http://localhost:8003/agent_card_register'
 
+    curl --location 'http://localhost:8002/a2a/message' \
+        --header 'Content-Type: application/json' \
+        --data '{
+        "source_agent": "user-face",
+        "target_agent": "reinforced-learning-agent",
+        "message_type": "TRAIN",
+        "payload": {
+                "limit": {"0": 400, "1": 300, "2": 200, "3": 100},
+                "scenarios": [
+                        {"0": 480, "1": 200, "2": 50, "3": 40},  
+                        {"0": 100, "1": 380, "2": 50, "3": 40},
+                        {"0": 100, "1": 200, "2": 280, "3": 40}, 
+                        {"0": 250, "1": 250, "2": 250, "3": 250} 
+                    ]
+            }
+        }'
 
+    curl --location 'http://localhost:8002/a2a/message' \
+        --header 'Content-Type: application/json' \
+        --data '{
+        "source_agent": "user-face",
+        "target_agent": "reinforced-learning-agent",
+        "message_type": "ACTION",
+        "payload": {
+                "limit": {"0": 400, "1": 300, "2": 200, "3": 100},
+                "scenario": {"0": 480, "1": 200, "2": 50, "3": 40}
+            }
+        }'

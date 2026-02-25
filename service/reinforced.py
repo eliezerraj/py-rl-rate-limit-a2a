@@ -23,17 +23,17 @@ class ReinforcedService:
 
         self.MOVE_AMOUNT = 20 
         self.TOTAL_CAPACITY = 1000
-        self.TIERS = ['A', 'B', 'C', 'D']
+        self.TIERS = ['0', '1', '2', '3']
         
         # 3 (idle, balanced, pressure)
         self.STATUS = 3
 
         self.ACTIONS = {
             0: "Stay",
-            1: ("D", "A"), 2: ("C", "A"), 3: ("B", "A"), # Moves to A
-            4: ("D", "B"), 5: ("C", "B"), 6: ("A", "B"), # Moves to B
-            7: ("D", "C"), 8: ("B", "C"), 9: ("A", "C"), # Moves to C
-            10: ("C", "D"), 11: ("B", "D"), 12: ("A", "D") # Moves to D
+            1: ("3", "0"), 2: ("2", "0"), 3: ("1", "0"), # Moves to A
+            4: ("3", "1"), 5: ("2", "1"), 6: ("0", "1"), # Moves to B
+            7: ("3", "2"), 8: ("1", "2"), 9: ("0", "2"), # Moves to C
+            10: ("2", "3"), 11: ("1", "3"), 12: ("0", "3") # Moves to D
         }
 
         self.STATES = [(a, b, c, d) for a in range(self.STATUS) for b in range(self.STATUS) for c in range(self.STATUS) for d in range(self.STATUS)]
@@ -41,7 +41,7 @@ class ReinforcedService:
         self.Q_TABLE = np.zeros((len(self.STATES), len(self.ACTIONS)))
 
         # Global state memory for Hysteresis
-        self.PREV_STATUS = {'A': 1, 'B': 1, 'C': 1, 'D': 1}
+        self.PREV_STATUS = {'0': 1, '1': 1, '2': 1, '3': 1}
 
     def get_state_index_with_hysteresis(self, usage_dict, limit_dict, verbose=False):
         st = tuple(self.get_state_index_with_hysteresis(t, usage_dict[t], limit_dict[t]) for t in self.TIERS)

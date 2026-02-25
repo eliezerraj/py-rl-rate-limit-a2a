@@ -10,7 +10,7 @@
     export PORT=8002
     export SESSION_TIMEOUT=3000
     export WINDOW_SIZE=30
-    export OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318/v1/traces
+    export OTEL_EXPORTER_OTLP_ENDPOINT=http://pi-home-01:4318/v1/traces
     export LOG_LEVEL=DEBUG
     export OTEL_STDOUT_LOG_GROUP=True
     export LOG_GROUP=/mnt/c/Eliezer/log/py-rate-limit-a2a.log
