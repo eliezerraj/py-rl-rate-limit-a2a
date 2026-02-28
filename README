@@ -1,0 +1,70 @@
+# py-rl-rate-limit-a2a
+py-rl-rate-limit-a2a
+
+## create venv
+
+    python3 -m venv .venv
+
+## activate
+
+    source .venv/bin/activate
+
+## install requirements
+
+    pip install -r requirements.txt
+
+## run (root)
+
+    uvicorn main:app --host 0.0.0.0 --port 8003 --no-access-log --log-level debug
+
+## test Local
+
+    export VERSION=0.1
+    export ACCOUNT=aws:999999999
+    export APP_NAME=py-rl-rate-limit-a2a.localhost
+    export HOST=127.0.0.1 
+    export URL_AGENT=http://127.0.0.1:8002
+    export URL_AGENT_00=http://127.0.0.1:8000
+    export URL_AGENT_01=http://127.0.0.1:8001        
+    export PORT=8003
+    export SESSION_TIMEOUT=3000
+    export WINDOW_SIZE=30
+    export OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318/v1/traces
+    export LOG_LEVEL=DEBUG 
+    export OTEL_STDOUT_LOG_GROUP=True
+    export LOG_GROUP=/mnt/c/Eliezer/log/py-rate-limit-a2a.log
+
+## Endpoint    
+
+    curl --location 'http://localhost:8003/.well-known/agent.json'
+
+    curl --location 'http://localhost:8003/agent_card_register'
+
+    curl --location 'http://localhost:8002/a2a/message' \
+        --header 'Content-Type: application/json' \
+        --data '{
+        "source_agent": "user-face",
+        "target_agent": "reinforced-learning-agent",
+        "message_type": "TRAIN",
+        "payload": {
+                "limit": {"0": 400, "1": 300, "2": 200, "3": 100},
+                "scenarios": [
+                        {"0": 480, "1": 200, "2": 50, "3": 40},  
+                        {"0": 100, "1": 380, "2": 50, "3": 40},
+                        {"0": 100, "1": 200, "2": 280, "3": 40}, 
+                        {"0": 250, "1": 250, "2": 250, "3": 250} 
+                    ]
+            }
+        }'
+
+    curl --location 'http://localhost:8002/a2a/message' \
+        --header 'Content-Type: application/json' \
+        --data '{
+        "source_agent": "user-face",
+        "target_agent": "reinforced-learning-agent",
+        "message_type": "ACTION",
+        "payload": {
+                "limit": {"0": 400, "1": 300, "2": 200, "3": 100},
+                "scenario": {"0": 480, "1": 200, "2": 50, "3": 40}
+            }
+        }'
