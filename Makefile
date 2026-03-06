@@ -10,7 +10,7 @@
     export PORT=8002
     export SESSION_TIMEOUT=3000
     export WINDOW_SIZE=30
-    export OTEL_EXPORTER_OTLP_ENDPOINT=http://pi-home-01:4318/v1/traces
+    export OTEL_EXPORTER_OTLP_ENDPOINT=http://pi-home-01.architecture.caradhras.io:4318/v1/traces
     export LOG_LEVEL=DEBUG
     export OTEL_STDOUT_LOG_GROUP=True
     export LOG_GROUP=/mnt/c/Eliezer/log/py-rate-limit-a2a.log
@@ -26,12 +26,12 @@ env:
 
 activate:
 	@echo "Activate venv..."
-	@bash -c "source .venv/bin/activate"
+	@bash -c "source ../.venv/bin/activate"
 
-# Run the Go application
+# Run the application
 run:
 	@echo "Running application with environment variables..."
-	@uvicorn main:app --host 0.0.0.0 --port 8002 --no-access-log --log-level debug
+	@bash -c "source ../.venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port 8002 --no-access-log --log-level debug"
     
 # Clean build cache
 clean:
