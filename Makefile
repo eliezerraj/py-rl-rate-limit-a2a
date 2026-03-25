@@ -31,11 +31,6 @@ activate:
 # Run the application
 run:
 	@echo "Running application with environment variables..."
-	@bash -c "source ../.venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port 8002 --no-access-log --log-level debug"
+	@bash -c "source ../.venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port  $(PORT) --no-access-log --log-level debug"
     
-# Clean build cache
-clean:
-	@echo "Cleaning build cache..."
-	@go clean
-
-.PHONY: all env run clean
+.PHONY: all env run

@@ -1,4 +1,3 @@
-
 from adapter.http_server import app
 
 # ----------------------------------------------

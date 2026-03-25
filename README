@@ -1,5 +1,6 @@
 # py-rl-rate-limit-a2a
-py-rl-rate-limit-a2a
+
+    Assumption: A group of tps (tier) must influence another tiers as soon as rebalanced occurs. A action take in (T1) can efect the future actions (Tn) (action chain react).
 
 ## create venv
 

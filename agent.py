@@ -24,7 +24,7 @@ class ClusteringAgent:
     def __init__(self):
         self.capabilities = AGENT_CARD
         self.router = A2ARouter()
-        self.msg_type = ""
+        self.msg_type = "no-message-setup"
         
     def receive(self, envelope: A2AEnvelope) -> A2AEnvelope:
         with tracer.start_as_current_span("agent.receive") as span:
